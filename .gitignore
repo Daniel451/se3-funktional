@@ -1,0 +1,6 @@
+# ignore all files
+*
+
+# whitelist .gitignore, .rkt
+!.gitignore
+!.rkt
