@@ -116,3 +116,59 @@
 
 (displayln "Osterinsel nach Lima")
 (Anfangskurs -27.10 -109.40 -12.10 -77.05 'o)
+
+
+
+;; Aufgabe 2.3.1
+(define (Grad->Himmelsrichtung deg)
+  (if (number? deg)
+      (if (and (>= deg 0) (<= deg 360))
+          (cond
+            ((or (>= deg 348.75) (< deg 11.25)) 'N)
+            ((< deg 33.75) 'NNE)
+            ((< deg 56.25) 'NE)
+            ((< deg 78.75) 'ENE)
+            ((< deg 101.25) 'E)
+            ((< deg 123.75) 'ESE)
+            ((< deg 146.25) 'SE)
+            ((< deg 168.75) 'SSE)
+            ((< deg 191.25) 'S)
+            ((< deg 213.75) 'SSW)
+            ((< deg 236.25) 'SW)
+            ((< deg 258.75) 'WSW)
+            ((< deg 281.25) 'W)
+            ((< deg 303.75) 'WNW)
+            ((< deg 326.25) 'NW)
+            ((< deg 348.75) 'NNW)
+            )
+          "Ungueltige Gradzahl - Eingabe muss im Interval [0, 360] liegen"
+          )
+      "Ungueltige Eingabe - Eingabe muss eine Zahl sein"
+      )
+  )
+
+
+;; Aufgabe 2.3.2
+(define (Himmelsrichtung->Grad him)
+  (if (symbol? him)
+      (cond
+        ((equal? him 'N) 0)
+        ((equal? him 'NNE) 22.5)
+        ((equal? him 'NE) 45)
+        ((equal? him 'ENE) 67.5)
+        ((equal? him 'E) 90)
+        ((equal? him 'ESE) 112.5)
+        ((equal? him 'SE) 135)
+        ((equal? him 'SSE) 157.5)
+        ((equal? him 'S) 180)
+        ((equal? him 'SSW) 202.5)
+        ((equal? him 'SW) 225)
+        ((equal? him 'WSW) 247.5)
+        ((equal? him 'W) 270)
+        ((equal? him 'WNW) 292.5)
+        ((equal? him 'NW) 315)
+        ((equal? him 'NNW) 337.5)
+        )
+      "Keine gütige Himmelsrichtung"
+      )
+  )
