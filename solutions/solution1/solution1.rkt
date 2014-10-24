@@ -169,6 +169,6 @@
         ((equal? him 'NW) 315)
         ((equal? him 'NNW) 337.5)
         )
-      "Keine gütige Himmelsrichtung"
+      "Keine gueltige Himmelsrichtung"
       )
   )
