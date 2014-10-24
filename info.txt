@@ -1,0 +1,13 @@
+### SE3 Übung ###
+
+- Gruppe:
+Britta	3schulte@inf...
+Alex	2gebel@inf...
+Daniel	2speck@inf...
+
+- Tutor:
+sascha.graeff@uni-hamburg.de
+
+- Abgabe:
+bis montags, 12:00 Uhr
+Betreffzeile: SE3 Blatt X Nachname Nachname Nachname
