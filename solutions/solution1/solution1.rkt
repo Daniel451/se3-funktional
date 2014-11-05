@@ -1,5 +1,7 @@
 #lang racket
 
+; Alexander Gebel, Britta Schulte, Daniel Speck
+
 ; Aufgabe 1
 
 ;; Aufgabe 1.1
