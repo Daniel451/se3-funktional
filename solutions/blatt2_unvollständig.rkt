@@ -120,7 +120,7 @@
 
 
 ; Aufgabe 2.4.: Die Zahl pi
-
+; ????
 
 ;-------------------------------------------------------------------------------------------------------------------------------
 
@@ -155,15 +155,15 @@
 ; Der Ausdruck liefert das Typprädikat "List". Jedoch hat diese Liste weder Kopf noch Körper, d.h. sie ist leer. 
 
 (displayln "3.5.") (define (id z) z)
-; 
+; ????
 (displayln "")
 
 (displayln "3.6.") (type-of (id sin))
-; 
+; ????
 
 (displayln "3.7.") (type-of (string-ref "Harry_Potter_und_der_Stein_der_Weisen" 3))
 ; Der Ausdruck liefert das Typprädikat "Char". Wahrscheinlich wird mit dieser Funktion das dritte Zeichen des Strings ausgegeben.
 
 (displayln "3.8.") (type-of (lambda (x) x))
-; 
+; ????
  
