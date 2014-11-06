@@ -21,55 +21,54 @@
 
 
 (displayln "1.1.") miau 
-; Der Variable "miau" wird das Symbol "Plueschi" zugewiesen. Die weitere Evaluierung 
-; wird durch "'" blockiert und die Argumente des Symbols werden wörtlich zurückgegben. 
+; "miau" evaluiert zu Symbol "Plueschi". Die weitere Evaluierung wird durch "'" 
+; blockiert und die Argumente des Symbols werden wörtlich zurückgegben. 
 
 (displayln "1.2.") katze 
-; Die Variable "katze" evaluiert zu der Variable "miau", die wiederum zum Symbol "Plueschi" evaluiert.
-; Da vor "Plueschi" das Quotierungszeichen "'" steht, wird die weitere Evaluierung blockiert und die 
-; Argumente des Symbols werden wörtlich zurückgegben.
+; "katze" evaluiert zu "miau", welches wiederum zum Symbol "Plueschi" evaluiert.
+; Da vor "Plueschi" das Quotierungszeichen "'" steht, wird die weitere Evaluierung 
+; blockiert und die Argumente des Symbols werden wörtlich zurückgegben.
 
 (displayln "1.3.") tiger 
-; Der Variable "tiger" wird das Symbol "miau" zugewiesen. Die weitere Evaluierung 
-; wird durch "'" blockiert und die Argumente des Symbols werden wörtlich zurückgegben. 
+; "tiger" evaluiert zum Symbol "miau". Die weitere Evaluierung wird durch "'" blockiert 
+; und die Argumente des Symbols werden wörtlich zurückgegben. 
 
 (displayln "1.4.") (quote katze) 
-; Die Funktion "quote" ist die Langfassung des Quotierungszeichens "'". Hier wird die Variable
-; "katze" quotiert, woraufhin die weitere Evaluierung geblockt wird und deren Argumente wörtlich
+; Die Funktion "quote" ist die Langfassung des Quotierungszeichens "'". Hierbei wird "katze" 
+; quotiert, woraufhin die weitere Evaluierung geblockt wird und die Argumente wörtlich
 ; zurückgegben werden. 
 
 ;(displayln "1.5.") (eval tiger) 
-; Die Variable "tiger" wird von der Funtkion "eval" zum Symbol "'miau" evaluiert. Im Nachhinein versucht
-; die Funktion "eval" das Symbol "'miau" zu evaluieren. Da es nicht definiert ist, kommt es zu der 
-; Fehlermeldung "miau: unbound identifier". (Aus diesem Grund wurde der Ausdruck auskommentiert).
+; "tiger" wird von der Funtkion "eval" zum Symbol "'miau" evaluiert. Im Nachhinein versucht
+; die Funktion "eval" das Symbol "'miau" zu evaluieren, d.h. es als Code darzustellen. Da es nicht definiert ist, 
+; kommt es zu der Fehlermeldung "miau: unbound identifier". (Aus diesem Grund wurde der Ausdruck auskommentiert).
 
 ;(displayln "1.6.") (eval katze) 
-; Die Variable "katze" evaluiert zur Variable "miau", die wiederum zum Symbol "'Plueschi" evaluiert.
-; Im Nachhinein versucht die Funktion "eval" das Symbol "'Plueschi" zu evaluieren. Da es nicht definiert ist,
-; kommt es zu der Fehlermeldung "Plueschi: unbound identifier". (Aus diesem Grund wurde der Ausdruck auskommentiert).
+; "katze" evaluiert zu "miau", weleches wiederum zum Symbol "'Plueschi" evaluiert.
+; Im Nachhinein versucht die Funktion "eval" das Symbol "'Plueschi" zu evaluieren, d.h. es als Code darzustellen. 
+; Da es nicht definiert ist, kommt es zu der Fehlermeldung "Plueschi: unbound identifier". 
+; (Aus diesem Grund wurde der Ausdruck auskommentiert).
 
 ;(displayln "1.7.") (eval 'tiger) 
-; Die Funktion "eval" versucht das Symbol "'tiger" zu evaluieren. Da es nicht definiert ist, kommt es zu der 
-; Fehlermeldung "tiger: unbound identifier". (Aus diesem Grund wurde der Ausdruck auskommentiert).
+; Die Funktion "eval" versucht das Symbol "'tiger" zu evaluieren, d.h. es als Code darzustellen. Da es nicht definiert ist, 
+; kommt es zu der Fehlermeldung "tiger: unbound identifier". (Aus diesem Grund wurde der Ausdruck auskommentiert).
 
 (displayln "1.8.") (welcherNameGiltWo 'harry 'potter) 
 ; ???????????
 
 (displayln "1.9.") (cdddr xs1) 
-; Der Akzessor "(cdddr xs1)" ist das Äquivalent zu "(cdr(cdr(cdr xs1)))". Da es sich bei dieser Liste um ein Symbol handelt
-; (zu erkennen am Quotierungszeichen), liefert der Akzessor "(cdddr xs1)" das Element an der dritten Stelle des Körpers. 
-; In diesem Fall ist es das Symbol "'(katze)", da die Evaluierung im Nachhinein durch "'" blockiert wird. 
+; Der Akzessor "(cdddr xs1)" ist das Äquivalent zu "(cdr(cdr(cdr xs1)))". Er liefert das Element an der dritten Stelle des Körpers. 
 ; Anmerkung: Gäbe es hinter Katze weitere Elemente in der Liste, würden sie durch den Akzessor "(cdddr xs1)" ab "'(katze)"
 ; auch angezeigt werden.
 
 (displayln "1.10.") (cdr xs2) 
-; Der Akzessor "(cdr xs2)" liefert das Element an der ersten Stelle des Körpers. In diesem Fall ist es die Variable "miau".
-; Da diese Variable schon vorher defniert wurde evaluiert sie zum Symbol "'Plueschi". Die weitre Evaluation wird durch "'" 
-; geblockt, sodass die Argumente des Symbols wörtlich zurückgegeben werden. 
+; Der Akzessor "(cdr xs2)" liefert das Element an der ersten Stelle des Körpers. In diesem Fall handelt es sich um "miau".
+; Da "miau" vorher defniert wurde, evaluiert es zum Symbol "'Plueschi". Die weitre Evaluation wird durch "'" geblockt, 
+; sodass die Argumente des Symbols wörtlich zurückgegeben werden. 
 
 (displayln "1.11.") (cdr xs3) 
-; Der Akzessor "(cdr xs3)" liefert das Element an der ersten Stelle des Körpers. In diesem Fall ist es die Variable "katze".
-; "katze" evaluiert zur Variable "miau", die wiederum zum Symbol "'Plueschi" evaluiert. Die weitre Evaluation wird durch "'" 
+; Der Akzessor "(cdr xs3)" liefert das Element an der ersten Stelle des Körpers. In diesem Fall handelt es sich um "katze".
+; "katze" evaluiert zu "miau", welches wiederum zum Symbol "'Plueschi" evaluiert. Die weitre Evaluation wird durch "'" 
 ; geblockt, sodass die Argumente des Symbols wörtlich zurückgegeben werden.
 
 ;(displayln "1.12.") (eval (sqrt 3))
@@ -77,11 +76,10 @@
 
 ;(displayln "1.13.") (eval '(welcherNameGiltWo 'tiger 'katze))
 ; Die Funtkion "eval" versucht das Symbol "'(welcherNameGiltWo...)" auszuwerten und scheitert daran. Da dieses Symbol nicht 
-; definiert ist, kommt es zu der Fehlermeldung "welcherNameGiltWo: unbound identifier". 
-;(Aus diesem Grund wurde der Ausdruck auskommentiert).
+; definiert ist, kommt es zu der Fehlermeldung "welcherNameGiltWo: unbound identifier". (Aus diesem Grund wurde der Ausdruck auskommentiert).
 
 ;(displayln "1.14.") (eval (welcherNameGiltWo 'katze 'tiger))
-; Die Funktion "eval" wertet zuerst die Variable "(welcherNameGiltWo)" aus, danach versucht sie das Symbol "'katze" auszuwerten. 
+; Die Funktion "eval" wertet zuerst "(welcherNameGiltWo)" aus, danach versucht sie das Symbol "'katze" auszuwerten. 
 ; Da dieses Symbol nicht definiert ist, kommt es zu der Fehlermeldung "katze: unbound identifier". 
 ;(Aus diesem Grund wurde der Ausdruck auskommentiert).
 
@@ -121,12 +119,6 @@
 (eulerzahl)
 
 
-
-
-
-
-
-
 ; Aufgabe 2.4.: Die Zahl pi
 
 
@@ -157,10 +149,10 @@
 ; Wahrheitswert zustande kommt.
 
 (displayln "3.3.") (type-of '(eins zwei drei))
-; 
+; Der Ausdruck liefert das Typprädikat "Pair", 
 
 (displayln "3.4.") (type-of '())
-; 
+; Der Ausdruck liefert das Typprädikat "List". Jedoch hat diese Liste weder Kopf noch Körper, d.h. sie ist leer. 
 
 (displayln "3.5.") (define (id z) z)
 ; 
