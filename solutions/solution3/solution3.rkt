@@ -10,7 +10,7 @@
 ; Aufgabe 1.1
 
 ;; Wir haben eine Liste von pairs gewählt, da sich dadurch zwei verknüpfte Werte
-;; einfach zuordnen und abrufen lassen (caar/cdar).
+;; einfach zuordnen und abrufen lassen (car/cdr/usw..).
 
 (define buchstabiertafel
   '(
@@ -96,6 +96,10 @@
 
 
 ; Aufgabe 2.1
+
+;; Wir haben eine Liste von pairs gewählt, da sich dadurch zwei verknüpfte Werte
+;; einfach zuordnen und abrufen lassen (car/cdr/usw..).
+
 (define flaggentafel
    '((#\A A)
      (#\B B)
@@ -137,7 +141,9 @@
   )
 
 
-;Aufgabe 2.2
+; Aufgabe 2.2
+
+;; Wandelt einen character in eine Flagge um
 
 (define (char->flag x)
   (eval (car
@@ -149,7 +155,13 @@
   )
 
 
-;Aufgabe 2.3
+; Aufgabe 2.3
+
+;; Iteriert rekursiv über Teillisten, bis x die leere
+;; Liste ist, verkettet dabei jeweils mit cons, um eine
+;; neue Liste zu erzeugen. Dabei wird der jeweilige character
+;; aus x per char-flag in eine Flagge gewandelt.
+;; Baut also einen String zu einer Liste von Flaggen um.
 
 (define (flaggennachricht x) 
   (if (string? x) (flaggennachricht (string->list x))
