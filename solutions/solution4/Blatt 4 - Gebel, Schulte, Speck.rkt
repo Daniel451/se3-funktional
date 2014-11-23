@@ -19,8 +19,7 @@
    (displayln "")
 ; Begründung:
 ; Dieser Ausdruck evaluiert zu '(+ (- 2 13) 11), da das Apostroph dafür sorgt, dass der 
-; Ausdruck als Liste interpretiert wird. Da hierbei keine Operation darauf angewendet wird,
-; wird die gesamte Liste zurückgegeben. 
+; nicht evaluiert wird sondern direkt unverändert zurückgegeben. Der Ausdruck wurde also "gequoted".
 
 ; 1.3.
    (displayln "1.3.")
@@ -33,12 +32,13 @@
 
 ; 1.4.
    (displayln "1.4.")
-   (cddr '(kommt (das Weihnachtsfesr)))
+   (cddr '(kommt (das Weihnachtsfest)))
    (displayln "")
 ; Begründung:
 ; Dieser Audruck evaluiert zu '(). Der Akzessor cddr ist mit (cdr(cdr Liste)) gleichgesetzt, d.h.  
 ; der Akzessor gibt die Liste ab dem dritten Element zurück. Da die Liste lediglich zwei Elemente
-; enthält, wird die leere Liste zurückgegeben. 
+; enthält, kommen wir bei der leeren Liste an, die immer das letzte Element des letzten cons-tupels
+; einer Liste ist. 
 
 ; 1.5.
    (displayln "1.5.")
@@ -58,7 +58,8 @@
 ; Dieser Ausdruck evaluiert zu '(Listen ganz einfach und). Hierbei dient die Funktion cons zur 
 ; Konstruktion eines Paares. Aufgrund des "syntaktischen Zuckers" wird das Paar hierbei als eine
 ; Liste dargestellt. (Paare, deren zweites Element eine Liste ist, werden in der vereinfachten 
-; Listennotation dargestellt).
+; Listennotation dargestellt, Listen sind also Paare jeweils eines Elements und einer weiteren Liste,
+; z.B. '(1 . (2 . ())) wäre die interne Struktur der Liste '(1 2) in racket).
 
 ; 1.7.
    (displayln "1.7.")
@@ -84,7 +85,7 @@
    (displayln "")
 ; Begründung:
 ; Dieser Ausdruck liefert false. Die Funktion eq? testet auf Identität. Obwohl beide Listen nach Anwendung  
-; der Funktion cons inhaltlich gleich sind, sind sie nicht identisch. 
+; der Funktion cons inhaltlich gleich sind, sind sie nicht identisch, haben nicht die gleiche Referenz. 
 
 
 ; Aufgabe 2: Textgenerierung
@@ -116,18 +117,151 @@
  
 
 ; 2.2.: Der Generator
+  (displayln "")
   (displayln "2.2.")
-
-
-
+  (displayln "siehe Code")
   (displayln "")
+  
 
-; 2.3.: Der Test
-  (displayln "2.3.")
+; Tafel von Blatt 3
+(define buchstabiertafel
+  '(
+    (#\A Alfa)
+    (#\B Bravo)
+    (#\C Charlie)
+    (#\D Delta)
+    (#\E Echo)
+    (#\F Foxtrott)
+    (#\G Golf)
+    (#\H Hotel)
+    (#\I India)
+    (#\J Juliett)
+    (#\K Kilo)
+    (#\L Lima)
+    (#\M Mike)
+    (#\N November)
+    (#\O Oskar)
+    (#\P Papa)
+    (#\Q Quebec)
+    (#\R Romeo)
+    (#\S Sierra)
+    (#\T Tango)
+    (#\U Uniform)
+    (#\V Viktor)
+    (#\W Wiskey)
+    (#\X X-ray)
+    (#\Y Yankee)
+    (#\Z Zulu)
+    (#\0 Nadazero)
+    (#\1 Unaone)
+    (#\2 Bissotwo)
+    (#\3 Terrathree)
+    (#\4 Kartefour)
+    (#\5 Pantafive)
+    (#\6 Soxisix)
+    (#\7 Setteseven)
+    (#\8 Oktoeight)
+    (#\9 Novenie)
+    (#\, Decimal)
+    (#\. Stop)))
+
+
+; Zeugs von Blatt 3
+;; gibt ein Tupel der buchstabiertafel zurück, reversed dieses Tupel,
+;; gibt den reverse-value zurück, sofern 'char im Tupel vorhanden ist
+;; damit erhält man den Schlüssel zum passenden char
+
+(define (char->key char)
+  (car
+   (reverse
+    (assoc char buchstabiertafel)
+    )
+   )
+  )
+
+; hilfszeugs von blatt 3 - konvertiert Kleinbuchstaben in Großbuchstaben
+(define (charanycase->key char)
+  (char->key (char-upcase char))
+  )
+
+; buchstabiere zeugs von blatt 3
+(define (buchstabiere text)
+  (letrec ((liste(lambda (satzliste ausgabeListe)
+      (if (not (empty? satzliste))
+        (cons 
+          (cdr (cons 
+                 ausgabeListe
+                 (charanycase->key (car satzliste))))
+          (liste (cdr satzliste) ausgabeListe))
+        ausgabeListe))))
+    (liste (string->list text) '()))
+  )
+
+; liste von symbolen zu einem string machen
+(define (symbollist->string symbollist)
+  (string-join (map symbol->string symbollist)))
+  
+
+
+(define (Notmeldung Schiffsname Rufzeichen Standort Notfallart Hilfeleistung)
+  (printf (string-upcase(string-append (Überschrift Schiffsname Rufzeichen) "\n" (Details Standort Notfallart Hilfeleistung) "\n"
+                         (Peilzeichen) "\n" (Unterschrift Schiffsname Rufzeichen)"\n" (over)))))
+
+ (define (Überschrift Schiffsname Rufzeichen)
+   (string-append (Notzeichen) " " (Notzeichen) " " (Notzeichen) "\n" 
+                  (hier_ist) "\n" 
+                  Schiffsname " " Schiffsname " " Schiffsname " " (Rufzeichen_buchstabiert Rufzeichen) "\n"
+                  (Notzeichen) " " Schiffsname (Schiffsname_buchstabiert Schiffsname) "\n"
+                   (Rufzeichen_buchstabiert Rufzeichen)))
+
+(define (Details Standort Notfallart Hilfeleistung)
+  (string-append Standort "\n"  Notfallart "\n" Hilfeleistung))
+
+(define (Peilzeichen) "ICH SENDE DEN TRÄGER --")
+
+(define (Unterschrift Schiffsname Rufzeichen)
+  (string-append Schiffsname " " (Rufzeichen_buchstabiert Rufzeichen)))
+
+(define (over) "OVER")
+
+(define (Notzeichen) "MAYDAY")
+
+(define (hier_ist) "HIER IST")
+
+(define (Rufzeichen_buchstabiert Rufzeichen)
+  (string-append "RUFZEICHEN " (string-upcase (symbollist->string (buchstabiere Rufzeichen)))))
+
+(define (Schiffsname_buchstabiert Schiffsname)
+  (string-append " ICH BUCHSTABIERE " (string-upcase (symbollist->string (buchstabiere Schiffsname)))))
 
 
 
-  (displayln "")
+; Aufgabe 2.3 Test
+
+(displayln "2.3.")
+
+;; Notruf der Babette
+(Notmeldung "BABETTE" 
+            "DEJY" 
+            "NOTFALLPOSITION UNGEFÄHR 10 SM NORDÖSTLICH LEUCHTTURM KIEL"
+            "NOTFALLZEIT 1000 UTC SCHWERER WASSEREINBRUCH WIR SINKEN"
+            "KEINE VERLETZTEN VIER MANN GEHEN IN DIE RETTUNGSINSEL SCHNELLE HILFE ERFORDERLICH")
+
+(displayln "")
+(displayln "")
+
+;; Notruf der Amira
+(Notmeldung "Amira" 
+            "AMRY" 
+            "Notfallposition 53°56’N, 006°31’E"
+            "Notfallzeit 1640 UTC. Wir sinken nach Kenterubg in schwerer See"
+            "15 Mann an Bord, das Schiff ist 15m lang, roter Rumpf.")
+
+
+(displayln "")
+(displayln "")
+  
+  
 
 ; Aufgabe 3: Funktionen vs. Spezialformen
 (displayln "Aufgabe 3")
