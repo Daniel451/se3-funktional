@@ -6,6 +6,42 @@
 (require racket/trace)
 
 
+; Aufgabe 1
+
+
+;; Definition von Rekursionstypen:
+
+;;; * Linerare Rekursion:
+;;;   Eine Funktionsdefinition, die sich auf der rechten Seite
+;;;   der definierenden Gleichung in jeder Fallunterscheidung
+;;;   selbst nur einmal verwendet, heißt linear-rekursiv.
+
+;;; * Baum Rekursion:
+;;;   Eine rekursive Definition ist baumartig
+;;;   wenn in der Definition in einer
+;;;   Fallunterscheidung mehrfach auf die
+;;;   Definition Bezug genommen wird.
+
+;;; * Geschachtelte Rekursion:
+;;;   Eine Rekursion ist geschachtelt, wenn die Funktion in der
+;;;   rekursiven Verwendung selbst als Argument mitgegeben
+;;;   wird.
+
+;;; * Direkte Rekursion:
+;;;   Wenn ein rekursives Element direkt auf sich verweist bzw. eine Funktion sich selbst aufruft, spricht man von direkter Rekursion.
+
+;;; * Indirekte Rekursion:
+;;;   Eine rekursive Definiton heißt indirekt oder verschränkt,
+;;;   wenn zwei oder mehrere Definitionen sich wechselseitig
+;;;   rekursiv verwenden.
+
+
+
+;; Angaben zu den einzelnen Funktionen:
+
+;; Kopfstück
+;;;
+;;; lineare Rekursion, da die Funktion nur einmalig im rechten Teil des else-cases aufgerufen wird
 
 
 
