@@ -65,7 +65,7 @@
   )
 
 
-;; Ein Geschenkebaum zeichnen
+;; Einen Geschenkebaum zeichnen
 ;;; ebene: 1-5
 ;;; ausrichtung: "left", "right", "center"
 (define (Geschenkebaum ebene ausrichtung)
