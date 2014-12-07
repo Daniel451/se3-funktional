@@ -12,42 +12,61 @@
 ;; Definition von Rekursionstypen:
 
 ;;; * Linerare Rekursion:
-;;;   Eine Funktionsdefinition, die sich auf der rechten Seite
-;;;   der definierenden Gleichung in jeder Fallunterscheidung
-;;;   selbst nur einmal verwendet, heißt linear-rekursiv.
+;;;;   Eine Funktionsdefinition, die sich auf der rechten Seite
+;;;;   der definierenden Gleichung in jeder Fallunterscheidung
+;;;;   selbst nur einmal verwendet, heißt linear-rekursiv.
 
 ;;; * Baum Rekursion:
-;;;   Eine rekursive Definition ist baumartig
-;;;   wenn in der Definition in einer
-;;;   Fallunterscheidung mehrfach auf die
-;;;   Definition Bezug genommen wird.
+;;;;   Eine rekursive Definition ist baumartig
+;;;;   wenn in der Definition in einer
+;;;;   Fallunterscheidung mehrfach auf die
+;;;;   Definition Bezug genommen wird.
 
 ;;; * Geschachtelte Rekursion:
-;;;   Eine Rekursion ist geschachtelt, wenn die Funktion in der
-;;;   rekursiven Verwendung selbst als Argument mitgegeben
-;;;   wird.
+;;;;   Eine Rekursion ist geschachtelt, wenn die Funktion in der
+;;;;   rekursiven Verwendung selbst als Argument mitgegeben
+;;;;   wird.
 
 ;;; * Direkte Rekursion:
-;;;   Wenn ein rekursives Element direkt auf sich verweist bzw. eine Funktion sich selbst aufruft, spricht man von direkter Rekursion.
+;;;;   Wenn ein rekursives Element direkt auf sich verweist bzw. eine Funktion sich selbst aufruft, spricht man von direkter Rekursion.
 
 ;;; * Indirekte Rekursion:
-;;;   Eine rekursive Definiton heißt indirekt oder verschränkt,
-;;;   wenn zwei oder mehrere Definitionen sich wechselseitig
-;;;   rekursiv verwenden.
+;;;;   Eine rekursive Definiton heißt indirekt oder verschränkt,
+;;;;   wenn zwei oder mehrere Definitionen sich wechselseitig
+;;;;   rekursiv verwenden.
 
 
 
 ;; Angaben zu den einzelnen Funktionen:
 
-;; Kopfstück
+;; kopfstueck
 ;;;
-;;; lineare Rekursion, da die Funktion nur einmalig im rechten Teil des else-cases aufgerufen wird
+;;; Fall: direkt & linear
+;;;
+;;; Begrüdung: Die Funktion ruft sich direkt selbst auf in der rekursiven Verwendung und auch immer nur einmal.
 
+;; endopfstueck
+;;;
+;;; Fall: direkt & linear
+;;;
+;;; Begrüdung: Die Funktion ruft sich direkt selbst auf in der rekursiven Verwendung und auch immer nur einmal.
 
+;; merge
+;;;
+;;; Fall: direkt & linear
+;;;
+;;; Begrüdung: Die Funktion ruft sich direkt selbst auf in der rekursiven Verwendung und auch immer nur einmal.
+;;; Im if gibt es zwar theoretisch gesehen zwei rekursive Aufrufe von merge, allerdings wird der eine nur im
+;;; true-case, der andere nur im else-case aufgerufen, es wird also immer nur einmal merge rekursiv aufgerufen,
+;;; egal ob die Bedingung zutrifft oder nicht.
 
-
-
-
+;; merge-sort
+;;;
+;;; Fall: indirekt, baumartig
+;;;
+;;; Begrüdung: Die Funktion verwendet die Funktionen kopfstueck, endstueck und merge abwechselnd, je nachdem,
+;;; welcher case gerade zutrifft -> indirekt.
+;;; Die Funktion nimmt mehrfach Bezug auf die Definition selbst -> baumartig.
 
 
 
