@@ -61,3 +61,22 @@
 (range3 '(0 . 10) 5)
 (range3 '(0 . 10) 10)
 (displayln "")
+
+
+
+
+; Aufgabe 2
+
+;; Aufgabe 2.1
+
+(define (function->points function tupel n)
+  (map
+   (lambda (x y) (cons x y))
+   (range3 tupel n)
+   (map function (range3 tupel n))
+   )
+  )
+
+(displayln "Aufgabe 2.1")
+(function->points sqr '(0 . 10) 5)
+(displayln "")
