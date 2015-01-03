@@ -71,7 +71,8 @@
 ;;; Begründung: compose verknüpft die Funktionen (curry + 33) und (curry * 1.8), d.h. sie werden
 ;;; nacheinander ausgeführt auf die übergebenen Elemente.
 ;;; Erst wird durch map jedes element der Liste geholt und dann mit 1.8 multipliziert
-;;; und zu dem Ergebnis 33 addiert. Zum Schluss gibt map dann die neue Liste zurück.
+;;; und zu dem Ergebnis 33 addiert.
+;;; Zum Schluss gibt map dann die neue Liste zurück.
 
 
 
