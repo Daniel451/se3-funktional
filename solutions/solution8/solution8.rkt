@@ -85,6 +85,7 @@
  )
 
 (displayln "> Aufgabe 2.1")
+(displayln "> Ausdruck: (map abs (filter number? '(1 2 -5 'lollipop' -10)))")
 (absolute '(1 2 -5 "lollipop" -10))
 (displayln "")
 
@@ -94,6 +95,7 @@
 )
 
 (displayln "> Aufgabe 2.2")
+(displayln "> Ausdruck: (filter (lambda (i) (integer? (/ i 3))) '(3 6 9 10 11 20 30 40))")
 (teilbar '(3 6 9 10 11 20 30 40))
 (displayln "")
 
@@ -103,6 +105,7 @@
  )
 
 (displayln "> Aufgabe 2.3")
+(displayln "> Ausdruck: (foldl + 0 (filter (lambda (i) (and (> i 10) (even? i))) '(1 2 3 4 10 20 30 50 55 65 5)))")
 (komplexeSumme '(1 2 3 4 10 20 30 50 55 65 5))
 (displayln "")
 ;;; 20 + 30 + 50 = 100
@@ -113,6 +116,7 @@
  )
 
 (displayln "> Aufgabe 2.4")
+(displayln "> Ausdruck: (partition odd? '(1 2 3 4 5 6))")
 (part odd? '(1 2 3 4 5 6))
 (displayln "")
 
