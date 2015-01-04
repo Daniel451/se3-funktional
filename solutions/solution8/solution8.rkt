@@ -180,6 +180,10 @@
     )
 )
 
+
+
+;; 3.2 - Kartenstapelgenerierung
+
 ;;; Hilfsfunktion: Nimmt ein 4er-Tupel in Form einer Liste und erhöht die Einträge von links nach rechts.
 ;;; Jede Stelle der Liste wird maximal bis 3 erhöht.
 ;;; Aus '(1 1 1 1) wird z.B. '(2 1 1 1)
@@ -201,9 +205,6 @@
         )
     )
 )
-
-
-;; 3.2 - Kartenstapelgenerierung
 
 ;;; Hilfsfunktion, welche die kompletten 81 Permutationen von 1, 2 und 3 auf vier Plätzen in 
 ;;; einer Liste berechnet, wenn als Startpermutation (1 1 1 1) übergeben wird.
@@ -241,9 +242,11 @@
 
 ;;; Wendet die Darstellungsfunktion für eine Karte auf alle 81 Karten des Kartenstapels an.
 ;;; Zurückgegeben werden alle Karten des Kartenstapels als Bild.
+
 (define (showKartenstapel)
     (map (lambda (xs) (apply show-set-card xs)) (kartenstapel))
 )
+
 
 
 ;; 3.3 - Kartenvergleich
