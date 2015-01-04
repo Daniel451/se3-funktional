@@ -161,7 +161,7 @@
     )
 )
 
-;;; Übersetzt eine Zahl n in die dazugehörige Fuellung
+;;; Übersetzt eine Zahl n in die dazugehörige Füllung
 (define (number2mode n)
     (case n
     [(1) 'outline]
@@ -190,8 +190,9 @@
 ;;; Aus '(1 1 1 1) wird z.B. '(2 1 1 1)
 ;;; '(3 1 1 1) -> '(1 2 1 1)
 ;;; usw...
-
+;;;
 ;;; Benötigt also eine Liste und gibt eine Liste zurück
+
 (define (incList xs)
     (let* (
            [a (add1 (car xs))]
@@ -209,8 +210,8 @@
 
 ;;; Hilfsfunktion, welche die kompletten 81 Permutationen von 1, 2 und 3 auf vier Plätzen in 
 ;;; einer Liste berechnet, wenn als Startpermutation (1 1 1 1) übergeben wird.
-;;; Benötigt eine Liste curPermutation
-;;; Gibt eine Liste aller Permutationen zurück
+;;; Benötigt eine Liste curPermutation.
+;;; Gibt eine Liste aller Permutationen zurück.
 
 (define (listGenerator curPermutation)
     (case curPermutation 
