@@ -240,7 +240,7 @@
 )
 
 ;;; Wendet die Darstellungsfunktion für eine Karte auf alle 81 Karten des Kartenstapels an.
-;Zurückgegeben werden alle Karten des Kartenstapels als Bild.
+;;; Zurückgegeben werden alle Karten des Kartenstapels als Bild.
 (define (showKartenstapel)
     (map (lambda (xs) (apply show-set-card xs)) (kartenstapel))
 )
@@ -248,14 +248,15 @@
 
 ;; 3.3 - Kartenvergleich
 
-;;; Eine Hilfsfunktion die entscheidet, ob drei Objekte der selben Eigenschaft zusammen in
-;;; einem Set sein können.
-;;; Ein Set besteht aus drei Karten, die für jede Eigenschaft die Bedingung erfüllen müssen,
-;;; dass alle Karten in dieser Eigenschaft übereinstimmen oder dass keine zwei der Karten
-;;; in dieser Eigenschaft übereinstimmen.
+;;; Eine Hilfsfunktion die entscheidet, ob drei Objekte a, b und c 3x dieselbe Ausprägung
+;;; einer Eigenschaft oder komplett unterschiedliche Ausprägungen haben.
 
-;;; Benötigt drei Integer a, b, c, die ein Symbol repräsentieren
-;;; Gibt einen booleschen Wert zurück, ob die übergebene Kombination ein gültiges Set ist
+;;; Das ist wichtig, da ein Set aus drei Karten besteht, die für jede Eigenschaft die
+;;; Bedingung erfüllen müssen, dass alle Karten in dieser Eigenschaft übereinstimmen oder
+;;; das keine zwei der Karten in dieser Eigenschaft übereinstimmen.
+
+;;; Benötigt drei Integer a, b, c, die jeweils eine Ausprägung einer Eigenschaft symbolisieren.
+;;; Gibt einen booleschen Wert zurück, ob die übergebene Kombination ein gültiges Set ist.
 
 (define (set? a b c)
     (or 
@@ -270,6 +271,7 @@
         )
     )
 )
+
 
 ;;; Überprüft, ob drei übergebene Karten ein gültiges Set sind.
 
