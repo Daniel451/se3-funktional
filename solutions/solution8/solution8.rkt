@@ -9,6 +9,11 @@
 
 ; Aufgabe 1
 
+(displayln "> Aufgabe 1")
+(displayln "> siehe Quelltextkommentare")
+(displayln "")
+(displayln "")
+(displayln "")
 
 ;; 1.1 - Wann ist eine Racket-Funktion eine Funktion höherer Ordnung?
 ;;; Eine Racket-Funktion ist eine Funktion höherer Ordnung, wenn besagte Funktion
@@ -79,6 +84,10 @@
 
 ; Aufgabe 2
 
+(displayln "> Aufgabe 2")
+(displayln "> siehe Quelltextkommentare & Ausgabe")
+(displayln "")
+
 ;; 2.1
 (define (absolute xs)
     (map abs (filter number? xs))
@@ -118,7 +127,158 @@
 (displayln "> Aufgabe 2.4")
 (displayln "> Ausdruck: (partition odd? '(1 2 3 4 5 6))")
 (part odd? '(1 2 3 4 5 6))
+
+(displayln "")
+(displayln "")
 (displayln "")
 
 
-(displayln "")
+
+
+; Aufgabe 3: Das Kartenspiel SET!
+
+(displayln "> Aufgabe 3")
+
+;; 3.1 - Repräsentation der verfügbaren Ausprägungen einer Spielkarte
+
+;;; Eigenschaften
+;;; Form   : | Oval  | Rechteck  | Welle
+;;; Farbe  : | rot   | blau      | grün
+;;; Anahl  : | ein   | zwei      | drei
+;;; Füllung: | Linie | Schraffur | Fläche
+
+
+(require "setkarten-module.rkt")
+    
+;;; Übersetzt eine Zahl n in die dazugehörige Form
+(define (number2pattern n)
+    (case n
+    [(1) 'waves]
+    [(2) 'oval]
+    [(3) 'rectangle]
+    [else (error "Zahl für Form ungültig.")]
+    )
+)
+
+;;; Übersetzt eine Zahl n in die dazugehörige Fuellung
+(define (number2mode n)
+    (case n
+    [(1) 'outline]
+    [(2) 'solid]
+    [(3) 'hatched]
+    [else (error "Zahl für Füllung ungültig.")]
+    )
+)
+
+;;; Übersetzt eine Zahl n in die dazugehörige Farbe
+(define (number2color n)
+    (case n
+    [(1) 'red]
+    [(2) 'green]
+    [(3) 'blue]
+    [else (error "Zahl für Farbe ungültig.")]
+    )
+)
+
+;;; Hilfsfunktion: Nimmt ein 4er-Tupel in Form einer Liste und erhöht die Einträge von links nach rechts.
+;;; Jede Stelle der Liste wird maximal bis 3 erhöht.
+;;; Aus '(1 1 1 1) wird z.B. '(2 1 1 1)
+;;; '(3 1 1 1) -> '(1 2 1 1)
+;;; usw...
+
+;;; Benötigt also eine Liste und gibt eine Liste zurück
+(define (incList xs)
+    (let* (
+           [a (add1 (car xs))]
+           [b (cdr xs)]
+           )
+        (if (equal? a 4)
+            (if (equal? b '())
+                '()
+                (cons 1 (incList b))
+            )
+            (cons a b)
+        )
+    )
+)
+
+
+;; 3.2 - Kartenstapelgenerierung
+
+;;; Hilfsfunktion, welche die kompletten 81 Permutationen von 1, 2 und 3 auf vier Plätzen in 
+;;; einer Liste berechnet, wenn als Startpermutation (1 1 1 1) übergeben wird.
+;;; Benötigt eine Liste curPermutation
+;;; Gibt eine Liste aller Permutationen zurück
+
+(define (listGenerator curPermutation)
+    (case curPermutation 
+        ['(3 3 3 3)  (list '(3 3 3 3))]
+        [else (cons curPermutation (listGenerator (incList curPermutation)))]
+    )
+)
+
+;;; Übersetzungsfunktion, die aus einem 4er-Tupel mit Zahlen ein 4er-Tupel mit den Eigenschaften
+;;; macht, die von "setkarten-module" gelesen werden können, um die Karten grafisch
+;;; darzustellen.
+;;; Benötigt eine Liste xs (4er-Tupel aus Zahlen von 1 bis 3)
+;;; Gibt eine Liste der Eigenschaften zurück
+
+(define (nlist2elist xs)   
+    (list
+        (car xs) 
+        (number2pattern (cadr xs)) 
+        (number2mode (caddr xs)) 
+        (number2color (cadddr xs))
+    )
+)
+
+;;; Hilfsfunktion, die den Kartenstapel generiert (Jede Karte wird bereits durch
+;;; ihre Eigenschaften dargestellt)
+
+(define (kartenstapel)   
+    (map nlist2elist (listGenerator '(1 1 1 1)))
+)
+
+;;; Wendet die Darstellungsfunktion für eine Karte auf alle 81 Karten des Kartenstapels an.
+;Zurückgegeben werden alle Karten des Kartenstapels als Bild.
+(define (showKartenstapel)
+    (map (lambda (xs) (apply show-set-card xs)) (kartenstapel))
+)
+
+
+;; 3.3 - Kartenvergleich
+
+;;; Eine Hilfsfunktion die entscheidet, ob drei Objekte der selben Eigenschaft zusammen in
+;;; einem Set sein können.
+;;; Ein Set besteht aus drei Karten, die für jede Eigenschaft die Bedingung erfüllen müssen,
+;;; dass alle Karten in dieser Eigenschaft übereinstimmen oder dass keine zwei der Karten
+;;; in dieser Eigenschaft übereinstimmen.
+
+;;; Benötigt drei Integer a, b, c, die ein Symbol repräsentieren
+;;; Gibt einen booleschen Wert zurück, ob die übergebene Kombination ein gültiges Set ist
+
+(define (set? a b c)
+    (or 
+        (and
+            (not (equal? a b))
+            (not (equal? a c))
+            (not (equal? b c))
+        )
+        (and
+            (equal? a b)
+            (equal? b c)
+        )
+    )
+)
+
+;;; Überprüft, ob drei übergebene Karten ein gültiges Set sind.
+
+(define (is-a-set? karte1 karte2 karte3)
+    (andmap set? karte1 karte2 karte3)
+)
+
+
+
+
+
+
