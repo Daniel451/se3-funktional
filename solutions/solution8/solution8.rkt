@@ -138,6 +138,7 @@
 ; Aufgabe 3: Das Kartenspiel SET!
 
 (displayln "> Aufgabe 3")
+(displayln "> siehe Quelltextkommentare & Ausgabe")
 
 ;; 3.1 - Repräsentation der verfügbaren Ausprägungen einer Spielkarte
 
@@ -281,9 +282,5 @@
 (define (is-a-set? karte1 karte2 karte3)
     (andmap set? karte1 karte2 karte3)
 )
-
-
-
-
 
 
